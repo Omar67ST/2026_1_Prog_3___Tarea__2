@@ -1,4 +1,3 @@
-// core_numeric.cpp
 #include <concepts>
 #include <iterator>
 #include <vector>
