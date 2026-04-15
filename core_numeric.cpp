@@ -1,3 +1,4 @@
+// core_numeric.cpp
 #include <concepts>
 #include <iterator>
 #include <vector>
@@ -133,5 +134,80 @@ void show_type_info() {
         cout << "Tipo flotante\n";
     }
 }
+    // Clase Coordenadas (2D)
+    struct Coordenadas {
+    double x, y;
+
+    // Operador suma
+    Coordenadas operator+(const Coordenadas& other) const {
+        return {x + other.x, y + other.y};
+    }
+
+    // Operador división por size_t
+    Coordenadas operator/(size_t n) const {
+        return {x / n, y / n};
+    }
+
+    // Operadores de comparación (ejemplo: compara por distancia al origen)
+    bool operator<(const Coordenadas& other) const {
+        return (x*x + y*y) < (other.x*other.x + other.y*other.y);
+    }
+    bool operator>(const Coordenadas& other) const {
+        return (x*x + y*y) > (other.x*other.x + other.y*other.y);
+    }
+};
+
+    // Clase Vector3D
+    struct Vector3D {
+        double x, y, z;
+
+        Vector3D operator+(const Vector3D& other) const {
+            return {x + other.x, y + other.y, z + other.z};
+        }
+
+        Vector3D operator/(size_t n) const {
+            return {x / n, y / n, z / n};
+        }
+
+        bool operator<(const Vector3D& other) const {
+            return (x*x + y*y + z*z) < (other.x*other.x + other.y*other.y + other.z*other.z);
+        }
+        bool operator>(const Vector3D& other) const {
+            return (x*x + y*y + z*z) > (other.x*other.x + other.y*other.y + other.z*other.z);
+        }
+    };
+
+    // Clase Esfera
+    struct Esfera {
+        double radio;
+
+        // Suma
+        Esfera operator+(const Esfera& other) const {
+            return {radio + other.radio};
+        }
+
+        // División
+        Esfera operator/(size_t n) const {
+            return {radio / n};
+        }
+
+        // Resta (necesaria para variance)
+        Esfera operator-(const Esfera& other) const {
+            return {radio - other.radio};
+        }
+
+        // Multiplicación (necesaria para variance)
+        Esfera operator*(const Esfera& other) const {
+            return {radio * other.radio};
+        }
+
+        // Comparaciones
+        bool operator<(const Esfera& other) const {
+            return radio < other.radio;
+        }
+        bool operator>(const Esfera& other) const {
+            return radio > other.radio;
+        }
+    };
 
 }
